@@ -10,6 +10,6 @@ public class GermanAmortization extends Amortization{
         setPeriods(periods);
         setMont(mont);
         setRateInterests(rateInterests);
-        styleCalculus = AmortizationFactory.createStyleCalculus(CalculusType.GERMAN, monthly);
+        tableAmortizationCalculus = AmortizationFactory.createStyleCalculus(CalculusType.GERMAN, monthly);
     }
 }

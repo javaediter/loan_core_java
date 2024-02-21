@@ -10,6 +10,6 @@ public class FranceAmortization extends Amortization{
         setPeriods(periods);
         setMont(mont);
         setRateInterests(rateInterests);
-        styleCalculus = AmortizationFactory.createStyleCalculus(CalculusType.FRENCH, monthly);
+        tableAmortizationCalculus = AmortizationFactory.createStyleCalculus(CalculusType.FRENCH, monthly);
     }
 }

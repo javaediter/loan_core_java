@@ -5,17 +5,19 @@ import ec.editer.amortization.core.strategy.*;
 
 public class AmortizationFactory {
 
-    public static IAmortizationStyleCalculus createStyleCalculus(CalculusType type, boolean monthly) {
-        IAmortizationStyleCalculus styleCalculus = null;
-        if (type.equals(CalculusType.FRENCH) && monthly) {
-            styleCalculus = new FranceStyleCalculusByMonth();
+    public static IAmortizationCalculus createStyleCalculus(CalculusType type, boolean monthly) {
+        if(type.equals(CalculusType.FRENCH_MONT)){
+            return new FranceMontCalculus();
+        }else if(type.equals(CalculusType.GERMAN_MONT)){
+            return new GermanMontCalculus();
+        }else if (type.equals(CalculusType.FRENCH) && monthly) {
+            return new FranceStyleCalculusByMonth();
         } else if (type.equals(CalculusType.GERMAN) && monthly) {
-            styleCalculus = new GermanStyleCalculusByMonth();
+            return new GermanStyleCalculusByMonth();
         } else if (type.equals(CalculusType.GERMAN) && !monthly) {
-            styleCalculus = new GermanStyleCalculusByYear();
+            return new GermanStyleCalculusByYear();
         } else {
-            styleCalculus = new FranceStyleCalculusByYear();
+            return new FranceStyleCalculusByYear();
         }
-        return styleCalculus;
     }
 }

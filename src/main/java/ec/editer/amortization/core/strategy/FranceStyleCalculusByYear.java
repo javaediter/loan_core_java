@@ -19,7 +19,7 @@ public class FranceStyleCalculusByYear implements IAmortizationStyleCalculus{
      * q = v * ( i / 1 - (1 + i)^-n )
      */
     @Override
-    public List<Fee> calculateFee(int periods, BigDecimal mont, BigDecimal rateInterests) {
+    public List<Fee> calculate(int periods, BigDecimal mont, BigDecimal rateInterests) {
         List<Fee> fees = new ArrayList<>();
 
         BigDecimal balance = new BigDecimal(0).add(mont, MathContext.DECIMAL32);

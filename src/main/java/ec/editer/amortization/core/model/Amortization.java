@@ -1,5 +1,6 @@
 package ec.editer.amortization.core.model;
 
+import ec.editer.amortization.core.strategy.IAmortizationCalculus;
 import ec.editer.amortization.core.strategy.IAmortizationStyleCalculus;
 
 import java.math.BigDecimal;
@@ -10,7 +11,9 @@ public class Amortization {
     private BigDecimal rateInterests;
     private int periods;
     private List<Fee> fees;
-    protected IAmortizationStyleCalculus styleCalculus;
+    private BigDecimal quote;
+    protected IAmortizationCalculus<List<Fee>> tableAmortizationCalculus;
+    protected IAmortizationCalculus<BigDecimal> montAmortizationCalculus;
 
     public BigDecimal getMont() {
         return mont;
@@ -44,11 +47,24 @@ public class Amortization {
         this.fees = fees;
     }
 
-    public void performanceStyleCalculus(){
-        fees = styleCalculus.calculateFee(periods, mont, rateInterests);
+    public BigDecimal getQuote() {
+        return quote;
     }
-    public void displayAmortizationTable(){
-        for(Fee fee : fees){
+
+    public void setQuote(BigDecimal quote) {
+        this.quote = quote;
+    }
+
+    public void performanceTableAmortizationCalculus() {
+        fees = tableAmortizationCalculus.calculate(periods, mont, rateInterests);
+    }
+
+    public void performanceMontAmortizationCalculus() {
+        mont = montAmortizationCalculus.calculate(periods, quote, rateInterests);
+    }
+
+    public void displayAmortizationTable() {
+        for (Fee fee : fees) {
             System.out.println(fee);
         }
     }
